@@ -33,4 +33,5 @@
     },
     "editor.snippetSuggestions": "top",
     "window.title": "${dirty} ${activeEditorMedium}${separator}${rootName}",
+    "editor.cursorStyle": "line-thin", 
 }
