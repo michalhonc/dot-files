@@ -13,9 +13,6 @@
     "terminal.integrated.drawBoldTextInBrightColors": true,
     "terminal.integrated.scrollback": 1000,
     "files.autoSave": "off",
-    "eslint.options": {
-        "configFile": "/home/michalhonc/Documents/eslint config/.eslintrc"
-    },
     "eslint.enable": true,
     "terminal.integrated.fontFamily": "Ubuntu mono",
     "css.lint.hexColorLength": "error",
