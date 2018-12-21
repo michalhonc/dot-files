@@ -47,7 +47,7 @@
     "command": "explorer.newFolder"
 },
 {
-    "key": "shift+enter",
+    "key": "shift+space",
     "command": "extension.jumpy-word",
     "when": "editorTextFocus"
 },
