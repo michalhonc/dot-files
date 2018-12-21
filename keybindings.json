@@ -1,0 +1,64 @@
+// keybinding VSCODe
+// Place your key bindings in this file to overwrite the defaults
+[
+{   "key": "shift+alt+right",       
+    "command": "editor.action.smartSelect.grow",
+    "when": "editorTextFocus"
+},
+{
+    "key": "ctrl+shift+down",
+    "command": "editor.action.copyLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly"
+},
+{
+    "key": "ctrl+shift+alt+down",
+    "command": "-editor.action.copyLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly"
+},
+{
+    "key": "ctrl+shift+up",
+    "command": "editor.action.copyLinesUpAction",
+    "when": "editorTextFocus && !editorReadonly"
+},
+{
+    "key": "ctrl+shift+alt+up",
+    "command": "-editor.action.copyLinesUpAction",
+    "when": "editorTextFocus && !editorReadonly"
+},
+{
+    "key": "ctrl+l",
+    "command": "console.log.wrap.down.prefix",
+    "when": "editorTextFocus"
+},
+{
+    "key": "ctrl+alt+pageup",
+    "command": "workbench.action.moveEditorToLeftGroup"
+},
+{
+    "key": "ctrl+alt+pagedown",
+    "command": "workbench.action.moveEditorToRightGroup"
+},
+{
+    "key": "ctrl+alt+n",
+    "command": "explorer.newFile"
+},
+{
+    "key": "ctrl+shift+alt+n",
+    "command": "explorer.newFolder"
+},
+{
+    "key": "shift+enter",
+    "command": "extension.jumpy-word",
+    "when": "editorTextFocus"
+},
+{
+    "key": "Escape",
+    "command": "extension.jumpy-exit",
+    "when": "editorTextFocus && jumpy.isJumpyMode"
+},
+{
+    "key": "ctrl+k e",
+    "command": "workbench.files.action.focusOpenEditorsView",
+    "when": "workbench.explorer.openEditorsView.active"
+}
+]
