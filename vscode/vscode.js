@@ -37,4 +37,23 @@
     "postcssSorting.config": {
         "properties-order": ["display","float","position","left","right","top","bottom","order","align-self","z-index","clear","box-sizing","margin","margin-top","margin-right","margin-bottom","margin-left","border","border-top","border-right","border-bottom","border-left","border-radius","padding","padding-top","padding-right","padding-bottom","padding-left","width","min-width","max-width","height","min-height","max-height","flex","flex-grow","flex-shrink","flex-basis","overflow","flex","flex-flow","flex-direction","flex-wrap","justify-content","align-content","align-items","column-count","column-width","column-gap","column-rule","column-fill","column-span","object-position","object-fit","content","text-indent","font","line-height","text-align","vertical-align","color","white-space","text-overflow","text-transform","text-decoration","text-shadow","background","background-color","background-image","background-repeat","background-attachment","background-position","list-style","box-shadow","transform","animation","transition","appearance","cursor","visibility","opacity",],
     },
+    "editor.parameterHints.enabled": false,
+    "workbench.startupEditor": "newUntitledFile",
+    "auto-rename-tag.activationOnLanguage": [
+        "html",
+        "xml",
+        "javascript",
+        "javascriptreact",
+    ],
+    "auto-close-tag.activationOnLanguage": [
+        "xml",
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "plaintext",
+        "markdown",
+        "cfml",
+        "HTML (Eex)"
+    ]
 }
