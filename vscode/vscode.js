@@ -12,7 +12,7 @@
     "terminal.integrated.rendererType": "canvas",
     "terminal.integrated.drawBoldTextInBrightColors": true,
     "terminal.integrated.scrollback": 1000,
-    "files.autoSave": "off",
+    "files.autoSave": "afterDelay",
     "eslint.enable": true,
     "terminal.integrated.fontFamily": "Ubuntu mono",
     "css.lint.hexColorLength": "error",
@@ -55,5 +55,6 @@
         "markdown",
         "cfml",
         "HTML (Eex)"
-    ]
+    ],
+    
 }
