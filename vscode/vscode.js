@@ -45,16 +45,4 @@
         "javascript",
         "javascriptreact",
     ],
-    "auto-close-tag.activationOnLanguage": [
-        "xml",
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-        "plaintext",
-        "markdown",
-        "cfml",
-        "HTML (Eex)"
-    ],
-    
 }
