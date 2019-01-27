@@ -1,48 +1,46 @@
 {
+    // WINDOW
     "window.zoomLevel": 0,
     "window.menuBarVisibility": "default",
-    "editor.minimap.enabled": true,
+    "window.title": "${dirty} ${activeEditorMedium}${separator}${rootName}",
+    "window.titleBarStyle": "custom",
+    // EDITOR
     "editor.fontFamily": "Consolas, 'Courier New', monospace",
+    "editor.minimap.enabled": true,
     "editor.tabSize": 4,
     "editor.wordWrap": "on",
     "workbench.iconTheme": "vscode-icons",
-    "vsicons.dontShowNewVersionMessage": true,
+    "editor.snippetSuggestions": "top",
+    "editor.cursorStyle": "line-thin",
+    "editor.selectionClipboard": false,
+    "editor.smoothScrolling": true,
+    "editor.acceptSuggestionOnCommitCharacter": false,
+    // WORKBENCH
+    "workbench.panel.defaultLocation": "right",
+    "workbench.editor.showTabs": true,
+    "workbench.colorTheme": "Monokai",
     "workbench.activityBar.visible": true,
-    "terminal.integrated.shell.linux": "/bin/zsh",
-    "terminal.integrated.rendererType": "canvas",
-    "terminal.integrated.drawBoldTextInBrightColors": true,
-    "terminal.integrated.scrollback": 1000,
+    "workbench.startupEditor": "newUntitledFile",
+    // FILES
     "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 10000,
+    // OTHERS
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact"
+    },
+    "breadcrumbs.enabled": true,
+    "explorer.confirmDragAndDrop": false,
+
+    // PLUGINS
+    "vsicons.dontShowNewVersionMessage": true,
     "eslint.enable": true,
-    "terminal.integrated.fontFamily": "Ubuntu mono",
     "css.lint.hexColorLength": "error",
     "gitlens.advanced.messages": {
         "suppressShowKeyBindingsNotice": true
     },
-    "workbench.colorTheme": "Monokai",
-    "emmet.includeLanguages": {
-        "javascript": "javascriptreact"
-    },
-    "editor.snippetSuggestions": "top",
-    "window.title": "${dirty} ${activeEditorMedium}${separator}${rootName}",
-    "editor.cursorStyle": "line-thin",
-    "breadcrumbs.enabled": true,
-    "editor.selectionClipboard": false,
-    "window.titleBarStyle": "custom",
-    "editor.smoothScrolling": true,"workbench.panel.defaultLocation": "right",
-    "terminal.explorerKind": "external",
     "javascript.updateImportsOnFileMove.enabled": "always",
-    "explorer.confirmDragAndDrop": false,
     "reason.path.ocamlmerlin": "/home/michalhonc/.opam/default/bin/ocamlmerlin",
     "postcssSorting.config": {
         "properties-order": ["display","float","position","left","right","top","bottom","order","align-self","z-index","clear","box-sizing","margin","margin-top","margin-right","margin-bottom","margin-left","border","border-top","border-right","border-bottom","border-left","border-radius","padding","padding-top","padding-right","padding-bottom","padding-left","width","min-width","max-width","height","min-height","max-height","flex","flex-grow","flex-shrink","flex-basis","overflow","flex","flex-flow","flex-direction","flex-wrap","justify-content","align-content","align-items","column-count","column-width","column-gap","column-rule","column-fill","column-span","object-position","object-fit","content","text-indent","font","line-height","text-align","vertical-align","color","white-space","text-overflow","text-transform","text-decoration","text-shadow","background","background-color","background-image","background-repeat","background-attachment","background-position","list-style","box-shadow","transform","animation","transition","appearance","cursor","visibility","opacity",],
     },
-    "editor.parameterHints.enabled": false,
-    "workbench.startupEditor": "newUntitledFile",
-    "auto-rename-tag.activationOnLanguage": [
-        "html",
-        "xml",
-        "javascript",
-        "javascriptreact",
-    ],
 }
