@@ -25,17 +25,16 @@
     "when": "editorTextFocus && !editorReadonly"
 },
 {
-    "key": "ctrl+l",
-    "command": "console.log.wrap.down.prefix",
-    "when": "editorTextFocus"
-},
-{
     "key": "ctrl+alt+pageup",
     "command": "workbench.action.moveEditorToLeftGroup"
 },
 {
     "key": "ctrl+alt+pagedown",
     "command": "workbench.action.moveEditorToRightGroup"
+},
+{ 
+    "key": "ctrl+shift+g",
+    "command": "workbench.view.scm"
 },
 {
     "key": "ctrl+alt+n",
@@ -169,5 +168,34 @@
 {
     "key": "ctrl+5",
     "command": "-workbench.action.focusFifthEditorGroup"
+},
+{
+    "key": "ctrl+shift+w",
+    "command": "-workbench.action.closeWindow"
+},
+{
+    "key": "ctrl+k ctrl+shift+w",
+    "command": "-workbench.action.closeAllGroups"
+},
+{
+    "key": "ctrl+w",
+    "when": "!editorIsOpen"
+},
+{
+    "key": "ctrl+l",
+    "command": "turboConsoleLog.displayLogMessage"
+},
+{
+    "key": "ctrl+alt+l",
+    "command": "-turboConsoleLog.displayLogMessage"
+},
+{
+    "key": "ctrl+shift+\\",
+    "command": "-editor.action.jumpToBracket",
+    "when": "editorTextFocus"
+},
+{
+    "key": "ctrl+shift+\\",
+    "command": "editor.action.jumpToBracket"
 }
 ]
