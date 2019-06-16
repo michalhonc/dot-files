@@ -14,7 +14,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'mxw/vim-jsx'
     Plug 'pangloss/vim-javascript'
     Plug 'w0rp/ale'
-    Plug 'patstockwell/vim-monokai-tasty'
+    " Plug 'patstockwell/vim-monokai-tasty'
     Plug 'MaxMEllon/vim-jsx-pretty'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
@@ -27,6 +27,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'groenewege/vim-less'
     Plug 'easymotion/vim-easymotion'
     Plug 'maximbaz/lightline-ale'
+    Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+    Plug 'ternjs/tern_for_vim', { 'do' : 'npm install' }
 call plug#end()
 
 " Git
@@ -40,9 +42,12 @@ set number relativenumber
 
 " Don't wrap lines
 set nowrap
+set ma
 
 " Enable yanking to the clipboard
-set clipboard=unnamed
+set clipboard+=unnamed  " use the clipboards of vim and win
+set paste               " Paste from a windows or from vim
+set go+=a               " Visual selection automatically copied to the clipboard
 
 " Do no show -- INSERT--
 set noshowmode
@@ -52,6 +57,7 @@ set splitright
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Searching
 let g:NERDCreateDefaultMappings = 0
+let g:NERDTreeChDirMode=2
 " Highlight search matches
 set hlsearch
 
@@ -61,6 +67,11 @@ let g:CommandTWildIgnore=&wildignore . ",*/node_modules"
 let g:ctrlp_custom_ignore = 'node_modules\|build'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntax
+
+" Intellisense
+" https://medium.com/vim-drops/javascript-autocompletion-on-vim-4fea7f6934e2
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
 
 " Allow JSX in .js files
 let g:jsx_ext_required=0
@@ -104,22 +115,24 @@ let g:netrw_winsize=30
 
 set shortmess=at
 set cmdheight=2
-colorscheme vim-monokai-tasty
+colorscheme sublimemonokai
 
 set laststatus=2
-set shiftwidth=4
+set shiftwidth=2
 set autoindent
 set smartindent
+" Nastaveni mezery za komentary
+let NERDSpaceDelims=1
 
 " Mapping
-nmap <C-e> :NERDTreeToggle<CR>
+nmap <C-e> :NERDTreeFind<CR>
 " fzf file fuzzy search that respects .gitignore
 " If in git directory, show only files that are committed, staged, or unstaged
 " else use regular :Files
 nnoremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<cr>"
 
 
-nnoremap <S-F> :Rg<Cr>
+nnoremap <S-F> :Ag<Space>
 
 " Type `gd` to go to definition
 nnoremap <silent> gd :ALEGoToDefinition<CR>
@@ -127,8 +140,8 @@ nnoremap <silent> gd :ALEGoToDefinition<CR>
 nnoremap <M-LeftMouse> <LeftMouse>:ALEGoToDefinition<CR>
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
-nmap <C-_>   <Plug>NERDCommenterToggle
-vmap <C-_>   <Plug>NERDCommenterToggle<CR>gv
+nmap <C-_> <Plug>NERDCommenterToggle
+vmap <C-_> <Plug>NERDCommenterToggle<CR>gv
 " Disable arrow key
 noremap <Up> <NOP>
 noremap <Down> <NOP>
@@ -138,17 +151,18 @@ noremap <Right> <NOP>
 " Disable new space with Enter
 noremap <Enter> <NOP>
 
-" Move lines with Alt + k,j
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
+"Move lines with Alt + k,j
+"nnoremap <A-j> :m .+1<CR>==
+"nnoremap <A-k> :m .-2<CR>==
+"inoremap <A-j> <Esc>:m .+1<CR>==gi
+"inoremap <A-k> <Esc>:m .-2<CR>==gi
+"vnoremap <A-j> :m '>+1<CR>gv=gv
+"vnoremap <A-k> :m '<-2<CR>gv=gv
 
 " Add new line after
-nmap <S-k> O<Esc>
-nmap <S-j> o<Esc>
+nmap <C-J> O<Esc>
+nmap <Enter> o<Esc>
 
-" Easy motion
 nmap s <Plug>(easymotion-s) 
+" Easy motion
+
