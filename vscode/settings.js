@@ -8,11 +8,18 @@
     },
     "vim.hlsearch": true,
     "vim.incsearch": true,
+    "vim.statusBarColorControl": true,
+    "vim.statusBarColors.normal": ["#8FBCBB", "#434C5E"],
+    "vim.statusBarColors.insert": "#BF616A",
+    "vim.statusBarColors.visual": "#B48EAD",
+    "vim.statusBarColors.visualline": "#B48EAD",
+    "vim.statusBarColors.visualblock": "#A3BE8C",
+    "vim.statusBarColors.replace": "#D08770",
 
     // WINDOW
     "window.zoomLevel": 0,
     "window.menuBarVisibility": "default",
-    "window.title": "${dirty} ${activeEditorMedium}${separator}${rootName}",
+    "window.title": "_vsc ${dirty} ${activeEditorMedium}${separator}${rootName}",
     "window.titleBarStyle": "custom",
 
     // EDITOR
@@ -29,9 +36,11 @@
     "editor.cursorSmoothCaretAnimation": true,
     "editor.parameterHints.enabled": false,
     "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.autoClosingQuotes": "never",
+    "editor.autoClosingBrackets": "never",
 
-// minimap
-"editor.minimap.renderCharacters": false,
+    // minimap
+    "editor.minimap.renderCharacters": false,
     "editor.minimap.maxColumn": 100,
     "editor.minimap.showSlider": "always",
 
@@ -121,5 +130,13 @@
             "value": "#42b883"
         }
     ],
-    "workbench.iconTheme": "vscode-icons"
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.colorCustomizations": {
+        "titleBar.activeBackground": "#464646",
+        "titleBar.activeForeground": "#ffffff",
+        "statusBar.background": "#8FBCBB",
+        "statusBar.noFolderBackground": "#8FBCBB",
+        "statusBar.debuggingBackground": "#8FBCBB",
+        "statusBar.foreground": "#434C5E"
+    }
 }
