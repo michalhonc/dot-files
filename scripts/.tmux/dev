@@ -1,0 +1,10 @@
+selectp -t 0
+send-keys 'vi' C-m
+splitw -h -p 20 
+
+selectp -t 1 
+send-keys 'SERVICE_HTTPS=true SERVICE_PORT_HTTPS=10501 npm run server:dev'
+splitw -v -p 50
+selectp -t 2 
+send-keys 'npm run build:dev-disc -https' C-m
+selectp -t 0
