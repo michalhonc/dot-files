@@ -14,13 +14,12 @@ call plug#begin('~/.vim/plugged')
     Plug 'mxw/vim-jsx'
     Plug 'pangloss/vim-javascript'
     Plug 'w0rp/ale'
-    " Plug 'patstockwell/vim-monokai-tasty'
-    Plug 'MaxMEllon/vim-jsx-pretty'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
     Plug 'tpope/vim-fugitive'
     Plug 'itchyny/lightline.vim'
     Plug 'editorconfig/editorconfig-vim'
+    Plug 'prettier/vim-prettier', { 'do': 'npm install' }
     Plug 'scrooloose/nerdtree'
     Plug 'scrooloose/nerdcommenter'
     Plug 'tpope/vim-surround'
@@ -29,6 +28,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'maximbaz/lightline-ale'
     Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
     Plug 'ternjs/tern_for_vim', { 'do' : 'npm install' }
+    Plug 'metakirby5/codi.vim'
+    Plug 'ruanyl/vim-fixmyjs'
+    Plug 'cakebaker/scss-syntax.vim'
 call plug#end()
 
 " Git
@@ -41,11 +43,12 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.\*']
 set number relativenumber
 
 " Don't wrap lines
-set nowrap
-set ma
+" set nowrap
+" set ma
 
 " Enable yanking to the clipboard
-set clipboard+=unnamed  " use the clipboards of vim and win
+set clipboard=unnamedplus " use the clipboards of vim and win
+
 set paste               " Paste from a windows or from vim
 set go+=a               " Visual selection automatically copied to the clipboard
 
@@ -54,10 +57,15 @@ set noshowmode
 
 " Split windows to right natively
 set splitright
+
+" Mapleader
+let mapleader = " "
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Searching
 let g:NERDCreateDefaultMappings = 0
 let g:NERDTreeChDirMode=2
+let g:NERDTreeShowHidden=1
 " Highlight search matches
 set hlsearch
 
@@ -111,16 +119,22 @@ let g:lightline.active = {
 let g:ale_set_quickfix = 1
 let g:ale_sign_warning = '.'
 let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
+let g:ale_set_highlights = 0
 let g:netrw_winsize=30
 
 set shortmess=at
-set cmdheight=2
+set cmdheight=1
 colorscheme sublimemonokai
 
 set laststatus=2
-set shiftwidth=2
-set autoindent
-set smartindent
+
+filetype plugin indent on
+" show existing tab with 4 spaces width
+set tabstop=4
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+" On pressing tab, insert 4 spaces
+set expandtab
 " Nastaveni mezery za komentary
 let NERDSpaceDelims=1
 
@@ -132,7 +146,7 @@ nmap <C-e> :NERDTreeFind<CR>
 nnoremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<cr>"
 
 
-nnoremap <S-F> :Ag<Space>
+nnoremap <C-F> :Ag<Space>
 
 " Type `gd` to go to definition
 nnoremap <silent> gd :ALEGoToDefinition<CR>
@@ -160,9 +174,13 @@ noremap <Enter> <NOP>
 "vnoremap <A-k> :m '<-2<CR>gv=gv
 
 " Add new line after
-nmap <C-J> O<Esc>
+" TODO: zprovoznit Ctrl+Enter
+nmap <NL><Enter> O<Esc>
 nmap <Enter> o<Esc>
 
-nmap s <Plug>(easymotion-s) 
 " Easy motion
+nmap s <Plug>(easymotion-s2)
+nmap <Leader>p <Plug>(Prettier)
 
+" Copy relative path
+noremap <silent> <F4> :let @+=expand("%")<CR>
