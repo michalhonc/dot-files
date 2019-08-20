@@ -1,4 +1,3 @@
-set guifont=Consolas:h14
 set directory=/tmp
 
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -55,8 +54,9 @@ set go+=a               " Visual selection automatically copied to the clipboard
 " Do no show -- INSERT--
 set noshowmode
 
-" Split windows to right natively
+" Split windows to right and below natively
 set splitright
+set splitbelow
 
 " Mapleader
 let mapleader = " "
