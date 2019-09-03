@@ -6,6 +6,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+
 " Specify a directory for plugins
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
@@ -18,19 +19,50 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-fugitive'
     Plug 'itchyny/lightline.vim'
     Plug 'editorconfig/editorconfig-vim'
-    Plug 'prettier/vim-prettier', { 'do': 'npm install' }
     Plug 'scrooloose/nerdtree'
     Plug 'scrooloose/nerdcommenter'
     Plug 'tpope/vim-surround'
     Plug 'groenewege/vim-less'
     Plug 'easymotion/vim-easymotion'
     Plug 'maximbaz/lightline-ale'
-    Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+    " Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
     Plug 'ternjs/tern_for_vim', { 'do' : 'npm install' }
-    Plug 'metakirby5/codi.vim'
     Plug 'ruanyl/vim-fixmyjs'
     Plug 'cakebaker/scss-syntax.vim'
 call plug#end()
+
+
+"" NERDTree
+" Automaticaly open NERDTree
+autocmd VimEnter * NERDTree
+" Close NERDTree when open file
+let NERDTreeQuitOnOpen = 1
+" Delete buffer when deleting file
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+" Close NERDTree if is only tab
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif 
+
+let g:NERDCreateDefaultMappings = 0
+let g:NERDTreeChDirMode=2
+let g:NERDTreeShowHidden=1
+nmap <C-e> :NERDTreeFind<CR>
+
+
+"" NERDCommenter
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+" Enable NERDCommenterToggle to check all selected lines is commented or not 
+let g:NERDToggleCheckAllLines = 1
+" Mapping
+nmap <C-_> <Plug>NERDCommenterToggle
+vmap <C-_> <Plug>NERDCommenterToggle<CR>gv
+
 
 " Git
 let g:EditorConfig_exclude_patterns = ['fugitive://.\*']
@@ -47,7 +79,6 @@ set number relativenumber
 
 " Enable yanking to the clipboard
 set clipboard=unnamedplus " use the clipboards of vim and win
-
 set paste               " Paste from a windows or from vim
 set go+=a               " Visual selection automatically copied to the clipboard
 
@@ -63,9 +94,6 @@ let mapleader = " "
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Searching
-let g:NERDCreateDefaultMappings = 0
-let g:NERDTreeChDirMode=2
-let g:NERDTreeShowHidden=1
 " Highlight search matches
 set hlsearch
 
@@ -83,11 +111,6 @@ set omnifunc=syntaxcomplete#Complete
 
 " Allow JSX in .js files
 let g:jsx_ext_required=0
-
-let g:ale_fixers = {
- \ 'javascript': ['eslint'],
- \ 'css': ['eslint']
- \ }
 
 set t_Co=256  " vim-monokai now only support 256 colours in terminal.
 
@@ -116,10 +139,9 @@ let g:lightline.active = {
 \   'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]],
 \ }
 
+let g:ale_fixers = ['eslint']
 let g:ale_set_quickfix = 1
-let g:ale_sign_warning = '.'
-let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
-let g:ale_set_highlights = 0
+let g:ale_sign_warning = '>'
 let g:netrw_winsize=30
 
 set shortmess=at
@@ -135,11 +157,7 @@ set tabstop=4
 set shiftwidth=4
 " On pressing tab, insert 4 spaces
 set expandtab
-" Nastaveni mezery za komentary
-let NERDSpaceDelims=1
-
 " Mapping
-nmap <C-e> :NERDTreeFind<CR>
 " fzf file fuzzy search that respects .gitignore
 " If in git directory, show only files that are committed, staged, or unstaged
 " else use regular :Files
@@ -154,8 +172,6 @@ nnoremap <silent> gd :ALEGoToDefinition<CR>
 nnoremap <M-LeftMouse> <LeftMouse>:ALEGoToDefinition<CR>
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
-nmap <C-_> <Plug>NERDCommenterToggle
-vmap <C-_> <Plug>NERDCommenterToggle<CR>gv
 " Disable arrow key
 noremap <Up> <NOP>
 noremap <Down> <NOP>
@@ -165,14 +181,6 @@ noremap <Right> <NOP>
 " Disable new space with Enter
 noremap <Enter> <NOP>
 
-"Move lines with Alt + k,j
-"nnoremap <A-j> :m .+1<CR>==
-"nnoremap <A-k> :m .-2<CR>==
-"inoremap <A-j> <Esc>:m .+1<CR>==gi
-"inoremap <A-k> <Esc>:m .-2<CR>==gi
-"vnoremap <A-j> :m '>+1<CR>gv=gv
-"vnoremap <A-k> :m '<-2<CR>gv=gv
-
 " Add new line after
 " TODO: zprovoznit Ctrl+Enter
 nmap <NL><Enter> O<Esc>
@@ -180,7 +188,6 @@ nmap <Enter> o<Esc>
 
 " Easy motion
 nmap s <Plug>(easymotion-s2)
-nmap <Leader>p <Plug>(Prettier)
 
 " Copy relative path
 noremap <silent> <F4> :let @+=expand("%")<CR>
