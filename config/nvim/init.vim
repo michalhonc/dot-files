@@ -12,7 +12,11 @@ endif
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
     Plug 'mxw/vim-jsx'
-    Plug 'pangloss/vim-javascript'
+    Plug 'maxmellon/vim-jsx-pretty'
+    Plug 'leafgarland/typescript-vim'
+    Plug 'peitalin/vim-jsx-typescript'
+    Plug 'sheerun/vim-polyglot'
+    Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
     Plug 'w0rp/ale'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
@@ -22,19 +26,23 @@ call plug#begin('~/.vim/plugged')
     Plug 'scrooloose/nerdtree'
     Plug 'scrooloose/nerdcommenter'
     Plug 'tpope/vim-surround'
-    Plug 'groenewege/vim-less'
     Plug 'easymotion/vim-easymotion'
     Plug 'maximbaz/lightline-ale'
-    " Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-    Plug 'ternjs/tern_for_vim', { 'do' : 'npm install' }
     Plug 'ruanyl/vim-fixmyjs'
-    Plug 'cakebaker/scss-syntax.vim'
+    "Plug 'erichdongubler/vim-sublime-monokai'
+    "Plug 'ternjs/tern_for_vim', { 'do' : 'npm install' }
 call plug#end()
 
+" https://github.com/MaxMEllon/vim-jsx-pretty#%EF%B8%8F-work-with-vim-polyglot 
+"let g:polyglot_disabled = ['tsx']
+" set filetypes as typescript.tsx
+autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
+autocmd BufNewFile,BufRead *.ts set filetype=typescript
+autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
 
 "" NERDTree
 " Automaticaly open NERDTree
-autocmd VimEnter * NERDTree
+"autocmd VimEnter * NERDTree
 " Close NERDTree when open file
 let NERDTreeQuitOnOpen = 1
 " Delete buffer when deleting file
@@ -139,14 +147,21 @@ let g:lightline.active = {
 \   'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]],
 \ }
 
-let g:ale_fixers = ['eslint']
+let g:ale_fixers = {
+  \    'javascript': ['eslint'],
+  \    'typescript': ['tslint'],
+\}
 let g:ale_set_quickfix = 1
 let g:ale_sign_warning = '>'
 let g:netrw_winsize=30
+" Set this in your vimrc file to disabling highlighting
+let g:ale_set_highlights = 0
 
 set shortmess=at
 set cmdheight=1
+
 colorscheme sublimemonokai
+
 
 set laststatus=2
 
