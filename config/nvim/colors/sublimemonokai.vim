@@ -89,7 +89,7 @@ call s:create_palette_color('warmgrey',    { 'gui': '#75715E', 'cterm': '59'  })
 
 call s:create_palette_color('pink',        { 'gui': '#f92772', 'cterm': '197' })
 call s:create_palette_color('green',       { 'gui': '#a6e22d', 'cterm': '148' })
-call s:create_palette_color('aqua',        { 'gui': '#66d9ef', 'cterm': '81'  })
+call s:create_palette_color('aqua',        { 'gui': '#e73c50', 'cterm': '81'  })
 call s:create_palette_color('yellow',      { 'gui': '#e6db74', 'cterm': '186' })
 call s:create_palette_color('orange',      { 'gui': '#fd9720', 'cterm': '208' })
 call s:create_palette_color('purple',      { 'gui': '#ae81ff', 'cterm': '141' })
@@ -188,7 +188,7 @@ hi! link Repeat       SublimePink
 hi! link Label        SublimePink
 hi! link Operator     SublimePink
 hi! link Keyword      SublimePink
-hi! link Exception    SublimePink
+hi! link Exception    SublimeGreen
 call s:h('CommentURL',    { 'fg': s:grey, 'format': 'italic' })
 
 hi! link PreProc        SublimeGreen
@@ -506,8 +506,34 @@ hi! link javaNonPrimitiveType SublimeType
 
 call s:h('jpropertiesIdentifier', { 'fg': s:pink })
 
-" JavaScript
+" TypeScript
+" .tsx color settings
+hi! link tsxTagName Keyword
+hi! link tsxCloseString Keyword
+hi! link tsxCloseTag Keyword
+hi! link tsxAttributeBraces SublimeWhite
+hi! link tsxEqual SublimeBrightWhite
+hi! link tsxAttrib Tag
+hi! link tsxStorageClass SublimeAqua
+hi! link tsxTypes Tag
+hi! link typescriptEndColons SublimeWhite
+hi! link tsxNameSpace SublimeAqua
+hi! link typescriptStorageClass SublimeAqua
+hi! link typescriptHtmlEvents SublimeWhite
+hi! link typescriptNull Special
+hi! link WebBrowser SublimeAqua
+hi! link typescriptParens SublimeWhite
+hi! link typescriptEventListenerMethods SublimeAqua
+hi! link typescriptLogicSymbols Keyword
+hi! link typescriptReserved Keyword
+hi! link typescriptConditional Keyword
+hi! link typescriptRepeat Keyword
+hi! link typescriptBranch Keyword
+hi! link typescriptLabel Keyword
+hi! link typescriptStatement Keyword
+hi! link typescriptOpSymbols Keyword
 
+" JavaScript
 hi! link jsArgsObj        SublimeAqua
 hi! link jsArrowFunction  SublimePink
 hi! link jsBuiltins       SublimeFunctionCall
@@ -539,12 +565,12 @@ hi! link jsPrototype      SublimeAqua
 " Variation: Technically this is extra from Sublime, but it looks nice.
 hi! link jsRepeat         Keyword
 hi! link jsReturn         Keyword
-hi! link jsStatement      Keyword
+hi! link jsStatement      Constant
 hi! link jsStatic         jsStorageClass
-hi! link jsStorageClass   SublimeType
+hi! link jsStorageClass   SublimeAqua
 hi! link jsSuper          SublimeContextParam
 hi! link jsThis           SublimeContextParam
-hi! link jsTry            Keyword
+hi! link jsTry            SublimeAqua
 hi! link jsUndefined      Constant
 
 " JSON
