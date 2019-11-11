@@ -11,34 +11,31 @@ endif
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
-    Plug 'mxw/vim-jsx'
-    Plug 'maxmellon/vim-jsx-pretty'
-    Plug 'leafgarland/typescript-vim'
-    Plug 'peitalin/vim-jsx-typescript'
-    Plug 'sheerun/vim-polyglot'
-    Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+    " Linters & Type Checkers
     Plug 'w0rp/ale'
+    " Languages
+    "Plug 'mxw/vim-jsx'
+    Plug 'MaxMEllon/vim-jsx-pretty'
+    Plug 'crusoexia/vim-javascript-lib'
+    Plug 'pangloss/vim-javascript'
+    Plug 'HerringtonDarkholme/yats.vim'
+    "Plug 'sheerun/vim-polyglot'
+    " Find
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
-    Plug 'tpope/vim-fugitive'
-    Plug 'itchyny/lightline.vim'
+    "" Config
     Plug 'editorconfig/editorconfig-vim'
+    Plug 'easymotion/vim-easymotion'
+    Plug 'itchyny/lightline.vim'
+    "" Files
     Plug 'scrooloose/nerdtree'
     Plug 'scrooloose/nerdcommenter'
-    Plug 'tpope/vim-surround'
-    Plug 'easymotion/vim-easymotion'
-    Plug 'maximbaz/lightline-ale'
-    Plug 'ruanyl/vim-fixmyjs'
-    "Plug 'erichdongubler/vim-sublime-monokai'
-    "Plug 'ternjs/tern_for_vim', { 'do' : 'npm install' }
+    " Visuals
+    "Plug 'crusoexia/vim-monokai' Modified config is in /nvim/colors
+    " Git
+    Plug 'tpope/vim-fugitive'
+    
 call plug#end()
-
-" https://github.com/MaxMEllon/vim-jsx-pretty#%EF%B8%8F-work-with-vim-polyglot 
-"let g:polyglot_disabled = ['tsx']
-" set filetypes as typescript.tsx
-autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
-autocmd BufNewFile,BufRead *.ts set filetype=typescript
-autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
 
 "" NERDTree
 " Automaticaly open NERDTree
@@ -57,6 +54,8 @@ let g:NERDTreeChDirMode=2
 let g:NERDTreeShowHidden=1
 nmap <C-e> :NERDTreeFind<CR>
 
+"Paste in visual mode without copying
+xnoremap p pgvy
 
 "" NERDCommenter
 " Use compact syntax for prettified multi-line comments
@@ -97,7 +96,7 @@ set noshowmode
 set splitright
 set splitbelow
 
-" Mapleader
+" Mapleader (SPACE)
 let mapleader = " "
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -114,8 +113,8 @@ let g:ctrlp_custom_ignore = 'node_modules\|build'
 
 " Intellisense
 " https://medium.com/vim-drops/javascript-autocompletion-on-vim-4fea7f6934e2
-filetype plugin on
-set omnifunc=syntaxcomplete#Complete
+"filetype plugin on
+"set omnifunc=syntaxcomplete#Complete
 
 " Allow JSX in .js files
 let g:jsx_ext_required=0
@@ -149,7 +148,9 @@ let g:lightline.active = {
 
 let g:ale_fixers = {
   \    'javascript': ['eslint'],
-  \    'typescript': ['tslint'],
+  \    'typescript': ['eslint'],
+  \    'typescriptreact': ['eslint'],
+  \    'typescript.tsx': ['eslint'],
 \}
 let g:ale_set_quickfix = 1
 let g:ale_sign_warning = '>'
@@ -160,7 +161,14 @@ let g:ale_set_highlights = 0
 set shortmess=at
 set cmdheight=1
 
-colorscheme sublimemonokai
+"colorscheme sublimemonokai
+colorscheme monokai
+
+"autocmd FileType typescriptreact colorscheme desert
+"autocmd FileType typescript colorscheme desert
+"autocmd FileType typescript.tsx colorscheme desert
+"autocmd FileType javascript colorscheme sublimemonokai
+"autocmd FileType javascript colorscheme monokai
 
 
 set laststatus=2
@@ -206,3 +214,5 @@ nmap s <Plug>(easymotion-s2)
 
 " Copy relative path
 noremap <silent> <F4> :let @+=expand("%")<CR>
+
+noremap <silent> <F1> :echo join(reverse(map(synstack(line('.'), col('.')), 'synIDattr(v:val,"name")')),' ')<cr>
