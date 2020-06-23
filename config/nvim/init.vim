@@ -19,6 +19,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'crusoexia/vim-javascript-lib'
     Plug 'pangloss/vim-javascript'
     Plug 'HerringtonDarkholme/yats.vim'
+    Plug 'jparise/vim-graphql'
+    Plug 'pantharshit00/vim-prisma'
     "Plug 'sheerun/vim-polyglot'
     " Find
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -27,6 +29,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'editorconfig/editorconfig-vim'
     Plug 'easymotion/vim-easymotion'
     Plug 'itchyny/lightline.vim'
+    Plug 'tpope/vim-surround'
     "" Files
     Plug 'scrooloose/nerdtree'
     Plug 'scrooloose/nerdcommenter'
@@ -34,7 +37,6 @@ call plug#begin('~/.vim/plugged')
     "Plug 'crusoexia/vim-monokai' Modified config is in /nvim/colors
     " Git
     Plug 'tpope/vim-fugitive'
-    
 call plug#end()
 
 "" NERDTree
@@ -145,13 +147,7 @@ let g:lightline.active = {
 \   'left': [[ 'mode', 'paste', 'gitbranch', 'readonly', 'filename', 'modified' ]],
 \   'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]],
 \ }
-
-let g:ale_fixers = {
-  \    'javascript': ['eslint'],
-  \    'typescript': ['eslint'],
-  \    'typescriptreact': ['eslint'],
-  \    'typescript.tsx': ['eslint'],
-\}
+let g:ale_fixers = ['eslint', 'prettier']
 let g:ale_set_quickfix = 1
 let g:ale_sign_warning = '>'
 let g:netrw_winsize=30
@@ -159,7 +155,7 @@ let g:netrw_winsize=30
 let g:ale_set_highlights = 0
 
 set shortmess=at
-set cmdheight=1
+set cmdheight=2
 
 "colorscheme sublimemonokai
 colorscheme monokai
@@ -180,17 +176,27 @@ set tabstop=4
 set shiftwidth=4
 " On pressing tab, insert 4 spaces
 set expandtab
+set list
 " Mapping
 " fzf file fuzzy search that respects .gitignore
 " If in git directory, show only files that are committed, staged, or unstaged
 " else use regular :Files
 nnoremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<cr>"
 
+" Move lines up and down Alt-j Alt-k
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
 
 nnoremap <C-F> :Ag<Space>
 
 " Type `gd` to go to definition
 nnoremap <silent> gd :ALEGoToDefinition<CR>
+" AutoFix
+noremap <silent> <F2> :ALEFix<CR>
 " Meta-click (command-click) to go to definition
 nnoremap <M-LeftMouse> <LeftMouse>:ALEGoToDefinition<CR>
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)

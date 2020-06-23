@@ -1,12 +1,10 @@
 " File:       monokai.vim
-" Author: Crusoe Xia (crusoexia)
-" Maintainer: Michal Honc
+" Maintainer: Crusoe Xia (crusoexia)
 " URL:        https://github.com/crusoexia/vim-monokai
 " License:    MIT
 "
 " The colour palette is from http://www.colourlovers.com/
 " The original code is from https://github.com/w0ng/vim-hybrid
-" Works for JSX and TSX
 
 " Initialisation
 " --------------
@@ -254,10 +252,7 @@ call s:h("jpropertiesIdentifier",   { "fg": s:pink })
 call s:h("vimCommand",              { "fg": s:pink })
 
 " Javascript
-call s:h("jsFuncName",          { "fg": s:green })
-call s:h("jsUndefined",          { "fg": s:purple })
-call s:h("jsThis",              { "fg": s:orange })
-call s:h("jsFunctionKey",       { "fg": s:red })
+call s:h("jsExportDefault",     { "fg": s:pink })
 call s:h("jsPrototype",         { "fg": s:aqua })
 call s:h("jsExceptions",        { "fg": s:aqua })
 call s:h("jsFutureKeys",        { "fg": s:aqua })
@@ -265,29 +260,40 @@ call s:h("jsBuiltins",          { "fg": s:aqua })
 call s:h("jsArgsObj",           { "fg": s:aqua })
 call s:h("jsStatic",            { "fg": s:aqua })
 call s:h("jsSuper",             { "fg": s:aqua })
-call s:h("jsFuncArgRest",       { "fg": s:purple, "format": "italic" })                                 
-call s:h("jsFuncArgs",          { "fg": s:orange, "format": "italic" })
 call s:h("jsStorageClass",      { "fg": s:aqua })
-call s:h("jsFuncCall",      { "fg": s:aqua })
-call s:h("jsClassDefinition",      { "fg": s:white })
-call s:h("jsExportDefault",      { "fg": s:pink })
-call s:h("jsGlobalObjects",      { "fg": s:white })
+call s:h("jsFuncCall",          { "fg": s:aqua })
+call s:h("jsGlobalObjects",     { "fg": s:aqua })
 call s:h("jsArrayMethods",      { "fg": s:aqua })
-call s:h("jsArrowFunction",      { "fg": s:white })
-call s:h("jsDocTags",           { "fg": s:aqua,   "format": "italic" })
+call s:h("jsFuncName",          { "fg": s:green })
+call s:h("jsFunctionKey",       { "fg": s:green })
+call s:h("jsClassProperty",     { "fg": s:green })
+call s:h("jsClassDefinition",   { "fg": s:white })
+call s:h("jsArrowFunction",     { "fg": s:white })
+call s:h("jsPropertyAccessExpr",{ "fg": s:white })
+call s:h("jsTesting",           { "fg": s:white })                                 
+call s:h("jsUndefined",         { "fg": s:purple })
+call s:h("jsNull",              { "fg": s:purple })
+call s:h("jsThis",              { "fg": s:orange })
+call s:h("jsDocTags",           { "fg": s:aqua, "format": "italic" })
+call s:h("jsFuncArgs",          { "fg": s:orange, "format": "italic" })
+call s:h("jsFuncArgRest",       { "fg": s:purple, "format": "italic" })                                 
+call s:h("jsInclude", 			{ "fg": s:aqua })
+call s:h("jsPropertyAccessExpr",{ "fg": s:aqua })
 
 " React
-call s:h("jsxTagName", { "fg": s:pink })
-call s:h("jsxComponentName", { "fg": s:pink })
-call s:h("jsxBraces", { "fg": s:white })
-call s:h("jsxEqual", { "fg": s:white })
-call s:h("jsxAttrib", { "fg": s:green })
-call s:h("tsxAttrib", { "fg": s:green })
-call s:h("jsxOpenPunct", { "fg": s:white })
-call s:h("jsxCloseString", { "fg": s:white })
-call s:h("tsxCloseString", { "fg": s:white })
+call s:h("jsxTagName",          { "fg": s:pink })
+call s:h("jsxComponentName",    { "fg": s:pink })
+call s:h("jsxBraces",           { "fg": s:white })
+call s:h("jsxEqual",            { "fg": s:white })
+call s:h("jsxOpenPunct",        { "fg": s:white })
+call s:h("jsxCloseString",      { "fg": s:white })
+call s:h("tsxCloseString",      { "fg": s:white })
+call s:h("jsxAttrib",           { "fg": s:green })
+call s:h("tsxAttrib",           { "fg": s:green })
+call s:h("tsxTagName",  		{ "fg": s:pink })
 
 " Typescript
+call s:h("typescriptAssign",			  { "fg": s:pink })
 call s:h("typescriptArrowFuncArg",        { "fg": s:orange, "format": "italic" })
 call s:h("typescriptFuncType",            { "fg": s:orange, "format": "italic" })
 call s:h("typescriptCall",                { "fg": s:orange, "format": "italic" })
@@ -303,9 +309,22 @@ call s:h("typescriptEndColons",           { "fg": s:white })
 call s:h("typescriptObjectLabel",         { "fg": s:green })
 call s:h("typescriptAmbientDeclaration",  { "fg": s:pink })
 call s:h("typescriptTestGlobal",          { "fg": s:pink })
-call s:h("typescriptBraces",          { "fg": s:white })
-call s:h("typescriptMember",          { "fg": s:white })
-call s:h("typescriptArrowFunc",          { "fg": s:white })
+call s:h("typescriptBraces",          	  { "fg": s:white })
+call s:h("typescriptMember",          	  { "fg": s:white })
+call s:h("typescriptArrowFunc",           { "fg": s:white })
+call s:h("typescriptArrayStaticMethod",	  { "fg": s:aqua })
+call s:h("typescriptArrayMethod",	  	  { "fg": s:aqua })
+call s:h("typescriptDOMFormProp",		  { "fg": s:aqua })
+call s:h("typescriptBinaryOp",			  { "fg": s:pink })
+call s:h("typescriptMember",			  { "fg": s:green })
+call s:h("typescriptAccessibilityModifier",{ "fg": s:aqua })
+call s:h("typescriptIdentifier",		  { "fg": s:orange })
+call s:h("typescriptES6SetMethod",		  { "fg": s:aqua })
+call s:h("typescriptBOMNavigatorProp",		  { "fg": s:aqua })
+call s:h("typescriptTemplateSB",		  { "fg": s:white })
+call s:h("typescriptStringStaticMethod",  { "fg": s:aqua })
+call s:h("typescriptObjectLabel",		  { "fg": s:orange })
+call s:h("typescriptIdentifierName",	  { "fg": s:green })
 
 " Html
 call s:h("htmlTag",             { "fg": s:white })
@@ -321,7 +340,7 @@ call s:h("xmlTagName",          { "fg": s:orange })
 call s:h("xmlAttrib",           { "fg": s:green })
 
 " CSS
-call s:h("cssProp",             { "fg": s:yellow })
+call s:h("cssProp",             { "fg": s:aqua })
 call s:h("cssUIAttr",           { "fg": s:yellow })
 call s:h("cssFunctionName",     { "fg": s:aqua })
 call s:h("cssColor",            { "fg": s:purple })
@@ -332,9 +351,15 @@ call s:h("cssCommonAttr",       { "fg": s:pink })
 call s:h("cssBraces" ,          { "fg": s:white })
 call s:h("cssClassNameDot",     { "fg": s:pink })
 call s:h("cssURL",              { "fg": s:orange, "format": "underline,italic" })
+call s:h("cssUnitDecorators", 	{ "fg": s:pink })
 
 " LESS
 call s:h("lessVariable",        { "fg": s:green })
+call s:h("lessClass",        { "fg": s:green })
+
+" SCSS
+call s:h("sassClass",			{ "fg": s:green })
+call s:h("sassClassChar",		{ "fg": s:pink })
 
 " ruby
 call s:h("rubyInterpolationDelimiter",  {})
