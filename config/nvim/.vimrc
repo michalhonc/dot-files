@@ -191,12 +191,12 @@ set nolist
 nnoremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<cr>"
 
 " Move lines up and down Alt-j Alt-k
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
+nnoremap <Esc>j :m .+1<CR>==
+nnoremap <Esc>k :m .-2<CR>==
+inoremap <Esc>j <Esc>:m .+1<CR>==gi
+inoremap <Esc>k <Esc>:m .-2<CR>==gi
+vnoremap <Esc>j :m '>+1<CR>gv=gv
+vnoremap <Esc>k :m '<-2<CR>gv=gv
 
 nnoremap <C-F> :Ag<Space>
 
