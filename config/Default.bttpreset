@@ -42,7 +42,7 @@
     "BTTTpFourFingerSwipeSensitivity" : 0.40000000000000002,
     "BSTMoveTreshold" : 2,
     "BTTHideFomControlStripWhenOpen" : false,
-    "BTTNumberOfStarts" : 554,
+    "BTTNumberOfStarts" : 646,
     "BTTForceNormalClickPressure3F" : 150,
     "showSiriRemoteTab" : true,
     "SIRIScrollSpeed" : 1,
@@ -66,7 +66,7 @@
     "BTTForceForceClickPressure5F" : 600,
     "BTTForceForceClickPressure" : 700,
     "BSTMemorySaver" : true,
-    "BTTLastClamshellState" : true,
+    "BTTLastClamshellState" : false,
     "BTTTouchBarAnimateGroups" : true,
     "BTTShowBTTWhenControlStripHidden" : true,
     "BTTFreeSpaceAfterESC" : 10,
@@ -76,6 +76,7 @@
     "BTTTiltWheelDelay" : 0.44999998807907104,
     "twoFingerDoubleTapDelay" : 0.5,
     "BTTForceNormalClickPressure5F" : 200,
+    "BTTTouchBarChecked" : true,
     "BTTShowESCWhenControlStripHidden" : true,
     "showBTTRemoteTab" : true,
     "BTTFilterMagicMouseLeftRightEdge" : true,
@@ -143,7 +144,7 @@
     "showOtherTriggersTab" : true,
     "BSTSnapAreaDefaultPictoDistanceFromLeft" : 0.10000000149011612
   },
-  "BTTPresetUUID" : "672E2CA5-3D0E-433B-A3D6-4644F1A1A200",
+  "BTTPresetUUID" : "4B488219-CE02-4DB0-AAF8-BE7716A445C2",
   "BTTPresetContent" : [
     {
       "BTTAppBundleIdentifier" : "BT.G",
@@ -153,29 +154,6 @@
 
       },
       "BTTTriggers" : [
-        {
-          "BTTTriggerType" : 0,
-          "BTTTriggerClass" : "BTTTriggerTypeKeyboardShortcut",
-          "BTTPredefinedActionType" : 177,
-          "BTTPredefinedActionName" : "Show \/ Hide Specific Application",
-          "BTTAppToShowOrHide" : "file:\/\/\/Applications\/iTerm.app",
-          "BTTShowHideAppConfig" : "{\"BTTShowHideSpecificAppOnlyHide\":false,\"BTTShowHideSpecificAppOnlyIfRunning\":true,\"BTTShowHideSpecificAppCMDN\":false,\"BTTShowHideSpecificAppOnlyShow\":true}",
-          "BTTAdditionalConfiguration" : "262145",
-          "BTTEnabled2" : 1,
-          "BTTKeyboardShortcutKeyboardType" : 4281,
-          "BTTRepeatDelay" : 0,
-          "BTTUUID" : "8269ADB7-6BB4-40C5-9542-53FDDD03A0F6",
-          "BTTTriggerOnDown" : 1,
-          "BTTNotesInsteadOfDescription" : 0,
-          "BTTLayoutIndependentChar" : "=",
-          "BTTEnabled" : 1,
-          "BTTModifierMode" : 0,
-          "BTTShortcutKeyCode" : 24,
-          "BTTShortcutModifierKeys" : 262144,
-          "BTTOrder" : 0,
-          "BTTDisplayOrder" : 0,
-          "BTTAutoAdaptToKeyboardLayout" : 0
-        },
         {
           "BTTTriggerType" : 0,
           "BTTTriggerClass" : "BTTTriggerTypeKeyboardShortcut",
@@ -245,6 +223,53 @@
               ]
             }
           ]
+        },
+        {
+          "BTTTriggerType" : 0,
+          "BTTTriggerClass" : "BTTTriggerTypeKeyboardShortcut",
+          "BTTPredefinedActionType" : 177,
+          "BTTPredefinedActionName" : "Show \/ Hide Specific Application",
+          "BTTAppToShowOrHide" : "file:\/\/\/Applications\/iTerm.app",
+          "BTTShowHideAppConfig" : "{\"BTTShowHideSpecificAppOnlyHide\":false,\"BTTShowHideSpecificAppOnlyIfRunning\":true,\"BTTShowHideSpecificAppCMDN\":false,\"BTTShowHideSpecificAppOnlyShow\":true}",
+          "BTTAdditionalConfiguration" : "262145",
+          "BTTEnabled2" : 1,
+          "BTTKeyboardShortcutKeyboardType" : 4281,
+          "BTTRepeatDelay" : 0,
+          "BTTUUID" : "8269ADB7-6BB4-40C5-9542-53FDDD03A0F6",
+          "BTTTriggerOnDown" : 1,
+          "BTTNotesInsteadOfDescription" : 0,
+          "BTTLayoutIndependentChar" : "=",
+          "BTTEnabled" : 1,
+          "BTTModifierMode" : 0,
+          "BTTShortcutKeyCode" : 24,
+          "BTTShortcutModifierKeys" : 262144,
+          "BTTOrder" : 0,
+          "BTTDisplayOrder" : 0,
+          "BTTAutoAdaptToKeyboardLayout" : 0
+        },
+        {
+          "BTTGestureNotes" : "Open IOS Simulator",
+          "BTTTriggerType" : 0,
+          "BTTTriggerClass" : "BTTTriggerTypeKeyboardShortcut",
+          "BTTPredefinedActionType" : 177,
+          "BTTPredefinedActionName" : "Show \/ Hide Specific Application",
+          "BTTAppToShowOrHide" : "file:\/\/\/Applications\/Xcode.app\/Contents\/Developer\/Applications\/Simulator.app",
+          "BTTShowHideAppConfig" : "{\"BTTShowHideSpecificAppOnlyHide\":false,\"BTTShowHideSpecificAppOnlyIfRunning\":true,\"BTTShowHideSpecificAppCMDN\":false,\"BTTShowHideSpecificAppOnlyShow\":true}",
+          "BTTAdditionalConfiguration" : "262145",
+          "BTTEnabled2" : 1,
+          "BTTKeyboardShortcutKeyboardType" : 4281,
+          "BTTRepeatDelay" : 0,
+          "BTTUUID" : "4CF4BA9B-D30C-40BE-89BA-6EF976CF65A0",
+          "BTTTriggerOnDown" : 1,
+          "BTTNotesInsteadOfDescription" : 0,
+          "BTTLayoutIndependentChar" : "0",
+          "BTTEnabled" : 1,
+          "BTTModifierMode" : 0,
+          "BTTShortcutKeyCode" : 29,
+          "BTTShortcutModifierKeys" : 262144,
+          "BTTOrder" : 2,
+          "BTTDisplayOrder" : 0,
+          "BTTAutoAdaptToKeyboardLayout" : 0
         }
       ]
     },
