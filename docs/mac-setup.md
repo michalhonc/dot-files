@@ -13,6 +13,7 @@
 - oh my zsh
 - Nodejs
 - Yarn
+- CheatSheet
 
 ## NodeJS
 - trash-cli
