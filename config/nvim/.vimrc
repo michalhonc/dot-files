@@ -18,7 +18,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'MaxMEllon/vim-jsx-pretty'
     Plug 'crusoexia/vim-javascript-lib'
     Plug 'pangloss/vim-javascript'
-    Plug 'HerringtonDarkholme/yats.vim'
+    "Plug 'HerringtonDarkholme/yats.vim'
     Plug 'jparise/vim-graphql'
     Plug 'pantharshit00/vim-prisma'
     "Plug 'sheerun/vim-polyglot'
@@ -39,15 +39,21 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-fugitive'
 call plug#end()
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" NERDTree
+
 " Automaticaly open NERDTree
-"autocmd VimEnter * NERDTree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
 " Close NERDTree when open file
 let NERDTreeQuitOnOpen = 1
+
 " Delete buffer when deleting file
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
+
 " Close NERDTree if is only tab
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif 
 
@@ -59,7 +65,11 @@ nmap <C-e> :NERDTreeFind<CR>
 "Paste in visual mode without copying
 xnoremap p pgvy
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" NERDCommenter
+
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
 " Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 1
 " Allow commenting and inverting empty lines (useful when commenting a region)
@@ -73,6 +83,7 @@ nmap <C-_> <Plug>NERDCommenterToggle
 vmap <C-_> <Plug>NERDCommenterToggle<CR>gv
 
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Git
 let g:EditorConfig_exclude_patterns = ['fugitive://.\*']
  
@@ -122,6 +133,8 @@ let g:ctrlp_custom_ignore = 'node_modules\|build'
 
 " Allow JSX in .js files
 let g:jsx_ext_required=0
+" Allow Flow
+let g:javascript_plugin_flow = 1
 
 set t_Co=256  " vim-monokai now only support 256 colours in terminal.
 
@@ -150,9 +163,8 @@ let g:lightline.active = {
 \   'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]],
 \ }
 
-let g:LanguageClient_serverCommands = {
-\ 'vue': ['vls']
-\ }
+"""""""
+" Flow
 
 let g:ale_fixers = ['eslint', 'prettier']
 let g:ale_set_quickfix = 1
@@ -160,7 +172,10 @@ let g:ale_sign_warning = '>'
 let g:netrw_winsize=30
 " Set this in your vimrc file to disabling highlighting
 let g:ale_set_highlights = 0
-
+let g:ale_linters_ignore = {
+      \ 'javascript': ['tsserver'],
+      \ 'javascriptreact': ['tsserver'],
+      \}
 set shortmess=at
 set cmdheight=2
 
@@ -217,6 +232,7 @@ noremap <Right> <NOP>
 " Disable new space with Enter
 noremap <Enter> <NOP>
 
+set autoindent
 " Add new line after
 " TODO: zprovoznit Ctrl+Enter
 nmap <NL><Enter> O<Esc>
