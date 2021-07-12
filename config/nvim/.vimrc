@@ -20,7 +20,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'pangloss/vim-javascript'
     "Plug 'HerringtonDarkholme/yats.vim'
     Plug 'jparise/vim-graphql'
-    Plug 'pantharshit00/vim-prisma'
+    " Plug 'pantharshit00/vim-prisma'
     "Plug 'sheerun/vim-polyglot'
     " Find
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -89,7 +89,9 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.\*']
  
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Behaviors
-
+set nocursorline
+set noerrorbells
+set visualbell
 " Show line numbers
 set number relativenumber
 
@@ -167,7 +169,11 @@ let g:lightline.active = {
 " Flow
 
 let g:ale_fixers = ['eslint', 'prettier']
-let g:ale_set_quickfix = 1
+let g:ale_open_list = 0
+" Set this if you want to.
+" This can be useful if you are combining ALE with
+" some other plugin which sets quickfix errors, etc.
+let g:ale_keep_list_window_open = 0
 let g:ale_sign_warning = '>'
 let g:netrw_winsize=30
 " Set this in your vimrc file to disabling highlighting
