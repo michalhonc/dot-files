@@ -167,9 +167,24 @@ let g:lightline.active = {
 
 """""""
 " Flow
-
+autocmd FileType qf setlocal wrap
 let g:ale_fixers = ['eslint', 'prettier']
-let g:ale_open_list = 0
+" let g:ale_open_list = 'on_save'
+let g:ale_echo_cursor = 0
+let g:ale_cursor_detail = 1
+let g:ale_set_highlights = 1
+" let g:ale_list_window_size = 5
+" let g:ale_set_loclist = 0
+" let g:ale_set_quickfix = 1
+
+set previewheight=50
+au BufEnter ?* call PreviewHeightWorkAround()
+func PreviewHeightWorkAround()
+    if &previewwindow
+        exec 'setlocal winheight='.&previewheight
+    endif
+endfunc
+
 " Set this if you want to.
 " This can be useful if you are combining ALE with
 " some other plugin which sets quickfix errors, etc.
@@ -177,13 +192,12 @@ let g:ale_keep_list_window_open = 0
 let g:ale_sign_warning = '>'
 let g:netrw_winsize=30
 " Set this in your vimrc file to disabling highlighting
-let g:ale_set_highlights = 0
 let g:ale_linters_ignore = {
       \ 'javascript': ['tsserver'],
       \ 'javascriptreact': ['tsserver'],
       \}
 set shortmess=at
-set cmdheight=2
+set cmdheight=1
 
 "colorscheme sublimemonokai
 colorscheme monokai
