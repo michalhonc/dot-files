@@ -136,3 +136,4 @@ export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 
 eval $(thefuck --alias)
+export PATH="/usr/local/opt/openjdk/bin:$PATH"

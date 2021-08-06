@@ -168,22 +168,20 @@ let g:lightline.active = {
 """""""
 " Flow
 autocmd FileType qf setlocal wrap
-let g:ale_fixers = ['eslint', 'prettier']
-" let g:ale_open_list = 'on_save'
-let g:ale_echo_cursor = 0
-let g:ale_cursor_detail = 1
+let g:ale_linters = {
+  \ 'javascript': ['eslint'],
+  \ 'typescript': ['eslint'],
+  \}
+let g:ale_fixers = ['prettier']
+" let g:ale_fix_on_save = 1
+
+let g:ale_open_list = 'on_save'
+" let g:ale_echo_cursor = 0
+" let g:ale_cursor_detail = 1
 let g:ale_set_highlights = 1
 " let g:ale_list_window_size = 5
-" let g:ale_set_loclist = 0
-" let g:ale_set_quickfix = 1
-
-set previewheight=50
-au BufEnter ?* call PreviewHeightWorkAround()
-func PreviewHeightWorkAround()
-    if &previewwindow
-        exec 'setlocal winheight='.&previewheight
-    endif
-endfunc
+let g:ale_set_loclist = 1
+let g:ale_set_quickfix = 1
 
 " Set this if you want to.
 " This can be useful if you are combining ALE with
@@ -263,5 +261,10 @@ nmap s <Plug>(easymotion-s2)
 
 " Copy relative path
 noremap <silent> <F4> :let @+=expand("%")<CR>
+
+" Save with space
+nnoremap <leader> :update<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>f :ALEFix<CR>
 
 noremap <silent> <F1> :echo join(reverse(map(synstack(line('.'), col('.')), 'synIDattr(v:val,"name")')),' ')<cr>
