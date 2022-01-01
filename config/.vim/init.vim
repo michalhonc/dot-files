@@ -11,18 +11,22 @@ endif
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
+    " Github Copilot
+    Plug 'github/copilot.vim', {'branch': 'release'}
     " Linters & Type Checkers
-    Plug 'w0rp/ale'
     " Languages
+    Plug 'w0rp/ale'
+    Plug 'jason0x43/vim-js-indent'
+    Plug 'Quramy/vim-js-pretty-template'
     "Plug 'mxw/vim-jsx'
-    Plug 'MaxMEllon/vim-jsx-pretty'
-    Plug 'crusoexia/vim-javascript-lib'
-    Plug 'pangloss/vim-javascript'
-    Plug 'HerringtonDarkholme/yats.vim'
     Plug 'jparise/vim-graphql'
-    Plug 'pantharshit00/vim-prisma'
+    " Plug 'pantharshit00/vim-prisma'
     "Plug 'sheerun/vim-polyglot'
+    " Svelte
+    Plug 'evanleck/vim-svelte', {'branch': 'main'}
     " Find
+    Plug 'stefandtw/quickfix-reflector.vim'
+    Plug 'jremmen/vim-ripgrep'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
     "" Config
@@ -39,15 +43,28 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-fugitive'
 call plug#end()
 
+highlight nonascii guibg=Red ctermbg=1 term=standout
+au BufReadPost * syntax match nonascii "[^\u0000-\u007F]"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" NERDTree
+
 " Automaticaly open NERDTree
-"autocmd VimEnter * NERDTree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" Start NERDTree
+" autocmd VimEnter * NERDTree
+" Jump to the main window.
+" autocmd VimEnter * wincmd p
+
 " Close NERDTree when open file
 let NERDTreeQuitOnOpen = 1
+
 " Delete buffer when deleting file
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
+
 " Close NERDTree if is only tab
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif 
 
@@ -59,7 +76,11 @@ nmap <C-e> :NERDTreeFind<CR>
 "Paste in visual mode without copying
 xnoremap p pgvy
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" NERDCommenter
+
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
 " Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 1
 " Allow commenting and inverting empty lines (useful when commenting a region)
@@ -73,12 +94,15 @@ nmap <C-_> <Plug>NERDCommenterToggle
 vmap <C-_> <Plug>NERDCommenterToggle<CR>gv
 
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Git
 let g:EditorConfig_exclude_patterns = ['fugitive://.\*']
  
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Behaviors
-
+set nocursorline
+set noerrorbells
+set visualbell
 " Show line numbers
 set number relativenumber
 
@@ -86,8 +110,10 @@ set number relativenumber
 " set nowrap
 " set ma
 
+set re=0
 " Enable yanking to the clipboard
-set clipboard=unnamedplus " use the clipboards of vim and win
+set clipboard=unnamed
+" set clipboard=unnamedplus " use the clipboards of vim and win
 set paste               " Paste from a windows or from vim
 set go+=a               " Visual selection automatically copied to the clipboard
 
@@ -117,9 +143,11 @@ let g:ctrlp_custom_ignore = 'node_modules\|build'
 " https://medium.com/vim-drops/javascript-autocompletion-on-vim-4fea7f6934e2
 "filetype plugin on
 "set omnifunc=syntaxcomplete#Complete
-
+let g:qf_modifiable = 1
 " Allow JSX in .js files
 let g:jsx_ext_required=0
+" Allow Flow
+let g:javascript_plugin_flow = 1
 
 set t_Co=256  " vim-monokai now only support 256 colours in terminal.
 
@@ -147,15 +175,39 @@ let g:lightline.active = {
 \   'left': [[ 'mode', 'paste', 'gitbranch', 'readonly', 'filename', 'modified' ]],
 \   'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]],
 \ }
-let g:ale_fixers = ['eslint', 'prettier']
+
+"""""""
+" Flow
+autocmd FileType qf setlocal wrap
+let g:ale_linters = {
+  \ 'javascript': ['eslint'],
+  \ 'typescript': ['eslint'],
+  \}
+let g:ale_fixers = ['prettier']
+" let g:ale_fix_on_save = 1
+
+" let g:ale_open_list = 'on_save'
+let g:ale_open_list = 0
+" let g:ale_echo_cursor = 0
+" let g:ale_cursor_detail = 1
+let g:ale_set_highlights = 0
+" let g:ale_list_window_size = 5
+let g:ale_set_loclist = 1
 let g:ale_set_quickfix = 1
+
+" Set this if you want to.
+" This can be useful if you are combining ALE with
+" some other plugin which sets quickfix errors, etc.
+let g:ale_keep_list_window_open = 0
 let g:ale_sign_warning = '>'
 let g:netrw_winsize=30
 " Set this in your vimrc file to disabling highlighting
-let g:ale_set_highlights = 0
-
+let g:ale_linters_ignore = {
+      \ 'javascript': ['tsserver'],
+      \ 'javascriptreact': ['tsserver'],
+      \}
 set shortmess=at
-set cmdheight=2
+set cmdheight=1
 
 "colorscheme sublimemonokai
 colorscheme monokai
@@ -171,27 +223,30 @@ set laststatus=2
 
 filetype plugin indent on
 " show existing tab with 4 spaces width
-set tabstop=4
+set tabstop=2
 " when indenting with '>', use 4 spaces width
-set shiftwidth=4
+set shiftwidth=2
 " On pressing tab, insert 4 spaces
 set expandtab
-set list
+set nolist
 " Mapping
 " fzf file fuzzy search that respects .gitignore
 " If in git directory, show only files that are committed, staged, or unstaged
 " else use regular :Files
 nnoremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<cr>"
+nnoremap <expr> <C-[> ':Files %:p:h'."\<cr>"
 
 " Move lines up and down Alt-j Alt-k
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
+nnoremap <Esc>j :m .+1<CR>==
+nnoremap <Esc>k :m .-2<CR>==
+inoremap <Esc>j <Esc>:m .+1<CR>==gi
+inoremap <Esc>k <Esc>:m .-2<CR>==gi
+vnoremap <Esc>j :m '>+1<CR>gv=gv
+vnoremap <Esc>k :m '<-2<CR>gv=gv
 
 nnoremap <C-F> :Ag<Space>
+" nnoremap <C-F> :Rg<Space>
+let g:rg_highlight='true'
 
 " Type `gd` to go to definition
 nnoremap <silent> gd :ALEGoToDefinition<CR>
@@ -210,6 +265,7 @@ noremap <Right> <NOP>
 " Disable new space with Enter
 noremap <Enter> <NOP>
 
+set autoindent
 " Add new line after
 " TODO: zprovoznit Ctrl+Enter
 nmap <NL><Enter> O<Esc>
@@ -220,5 +276,10 @@ nmap s <Plug>(easymotion-s2)
 
 " Copy relative path
 noremap <silent> <F4> :let @+=expand("%")<CR>
+
+" Save with space
+nnoremap <leader> :update<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>f :ALEFix<CR>
 
 noremap <silent> <F1> :echo join(reverse(map(synstack(line('.'), col('.')), 'synIDattr(v:val,"name")')),' ')<cr>

@@ -96,7 +96,7 @@ plugins=(
   z
 )
 
-source $ZSH/oh-my-zsh.sh
+source $ZSH/.zshrc
 
 export EDITOR='vim'
 
@@ -125,6 +125,8 @@ export EDITOR='vim'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias vim="nvim"
+alias vi="nvim"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

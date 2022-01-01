@@ -16,12 +16,17 @@ call plug#begin('~/.vim/plugged')
     " Svelte
     Plug 'evanleck/vim-svelte', {'branch': 'main'}
     " Linters & Type Checkers
-    Plug 'w0rp/ale'
+    " Plug 'w0rp/ale'
+    Plug 'HerringtonDarkholme/yats.vim'
+    " Plug 'leafgarland/typescript-vim'
+    Plug 'Quramy/tsuquyomi'
+    Plug 'jason0x43/vim-js-indent'
+    Plug 'Quramy/vim-js-pretty-template'
     " Languages
     "Plug 'mxw/vim-jsx'
-    Plug 'MaxMEllon/vim-jsx-pretty'
-    Plug 'crusoexia/vim-javascript-lib'
-    Plug 'pangloss/vim-javascript'
+    " Plug 'MaxMEllon/vim-jsx-pretty'
+    " Plug 'crusoexia/vim-javascript-lib'
+    " Plug 'pangloss/vim-javascript'
     "Plug 'HerringtonDarkholme/yats.vim'
     Plug 'jparise/vim-graphql'
     " Plug 'pantharshit00/vim-prisma'
@@ -52,8 +57,12 @@ au BufReadPost * syntax match nonascii "[^\u0000-\u007F]"
 "" NERDTree
 
 " Automaticaly open NERDTree
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" Start NERDTree
+autocmd VimEnter * NERDTree
+" Jump to the main window.
+autocmd VimEnter * wincmd p
 
 " Close NERDTree when open file
 let NERDTreeQuitOnOpen = 1
