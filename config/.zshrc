@@ -6,6 +6,14 @@ export NVM_DIR="${XDG_CONFIG_HOME/:-$HOME/.}nvm"
 source ~/.nvm/nvm.sh
 export LD_PRELOAD=/lib/x86_64-linux-gnu/libnss_sss.so.2
 
+#determines search program for fzf
+if type ag &> /dev/null; then
+    export FZF_DEFAULT_COMMAND='ag -p ~/.gitignore -g ""'
+fi
+#if type rg &> /dev/null; then
+  # export FZF_DEFAULT_COMMAND='rg --files --hidden'
+# fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Path to your oh-my-zsh installation.
@@ -84,11 +92,13 @@ plugins=(
   copydir
   frontend-search
   nvm
-  osx
+  macos
   z
 )
 
 source $ZSH/oh-my-zsh.sh
+
+export EDITOR='vim'
 
 # User configuration
 

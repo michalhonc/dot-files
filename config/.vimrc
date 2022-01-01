@@ -11,6 +11,10 @@ endif
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
+    " Github Copilot
+    Plug 'github/copilot.vim', {'branch': 'main'}
+    " Svelte
+    Plug 'evanleck/vim-svelte', {'branch': 'main'}
     " Linters & Type Checkers
     Plug 'w0rp/ale'
     " Languages
@@ -23,6 +27,8 @@ call plug#begin('~/.vim/plugged')
     " Plug 'pantharshit00/vim-prisma'
     "Plug 'sheerun/vim-polyglot'
     " Find
+    Plug 'stefandtw/quickfix-reflector.vim'
+    Plug 'jremmen/vim-ripgrep'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
     "" Config
@@ -38,6 +44,9 @@ call plug#begin('~/.vim/plugged')
     " Git
     Plug 'tpope/vim-fugitive'
 call plug#end()
+
+highlight nonascii guibg=Red ctermbg=1 term=standout
+au BufReadPost * syntax match nonascii "[^\u0000-\u007F]"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" NERDTree
@@ -132,7 +141,7 @@ let g:ctrlp_custom_ignore = 'node_modules\|build'
 " https://medium.com/vim-drops/javascript-autocompletion-on-vim-4fea7f6934e2
 "filetype plugin on
 "set omnifunc=syntaxcomplete#Complete
-
+let g:qf_modifiable = 1
 " Allow JSX in .js files
 let g:jsx_ext_required=0
 " Allow Flow
@@ -175,10 +184,11 @@ let g:ale_linters = {
 let g:ale_fixers = ['prettier']
 " let g:ale_fix_on_save = 1
 
-let g:ale_open_list = 'on_save'
+" let g:ale_open_list = 'on_save'
+let g:ale_open_list = 0
 " let g:ale_echo_cursor = 0
 " let g:ale_cursor_detail = 1
-let g:ale_set_highlights = 1
+let g:ale_set_highlights = 0
 " let g:ale_list_window_size = 5
 let g:ale_set_loclist = 1
 let g:ale_set_quickfix = 1
@@ -222,6 +232,7 @@ set nolist
 " If in git directory, show only files that are committed, staged, or unstaged
 " else use regular :Files
 nnoremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<cr>"
+nnoremap <expr> <C-[> ':Files %:p:h'."\<cr>"
 
 " Move lines up and down Alt-j Alt-k
 nnoremap <Esc>j :m .+1<CR>==
@@ -232,6 +243,8 @@ vnoremap <Esc>j :m '>+1<CR>gv=gv
 vnoremap <Esc>k :m '<-2<CR>gv=gv
 
 nnoremap <C-F> :Ag<Space>
+" nnoremap <C-F> :Rg<Space>
+let g:rg_highlight='true'
 
 " Type `gd` to go to definition
 nnoremap <silent> gd :ALEGoToDefinition<CR>
