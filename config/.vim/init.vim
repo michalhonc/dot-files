@@ -12,7 +12,7 @@ endif
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
     " Github Copilot
-    Plug 'github/copilot.vim', {'branch': 'release'}
+    " Plug 'github/copilot.vim', {'branch': 'release'}
     " Linters & Type Checkers
     " Languages
     Plug 'w0rp/ale'
@@ -39,6 +39,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'scrooloose/nerdcommenter'
     " Visuals
     "Plug 'crusoexia/vim-monokai' Modified config is in /nvim/colors
+    Plug 'cormacrelf/vim-colors-github'
     " Git
     Plug 'tpope/vim-fugitive'
 call plug#end()
@@ -211,6 +212,11 @@ set cmdheight=1
 
 "colorscheme sublimemonokai
 colorscheme monokai
+" colorscheme github
+
+" if you use airline / lightline
+let g:airline_theme = "github"
+let g:lightline = { 'colorscheme': 'github' }
 
 "autocmd FileType typescriptreact colorscheme desert
 "autocmd FileType typescript colorscheme desert
@@ -218,6 +224,8 @@ colorscheme monokai
 "autocmd FileType javascript colorscheme sublimemonokai
 "autocmd FileType javascript colorscheme monokai
 
+nnoremap <expr> <C-m> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
 
 set laststatus=2
 
